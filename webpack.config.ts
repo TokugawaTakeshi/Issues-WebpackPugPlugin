@@ -30,47 +30,47 @@ const webpackConfig: Webpack.Configuration = {
       },
 
       /* ==== hug-plain-loader/pug-html-loader ====================================================================== */
-      // {
-      //   test: /\.pug$/u,
-      //   oneOf: [
-      //     {
-      //       resourceQuery: /^\?vue/u,
-      //       use: [ "pug-plain-loader" ]
-      //     },
-      //     {
-      //       use: [
-      //         {
-      //           loader: "html-loader",
-      //           options: {
-      //             minimize: { caseSensitive: true }
-      //           }
-      //         },
-      //         "pug-html-loader"
-      //       ]
-      //     }
-      //   ]
-      // }
-      /* ==== Pug plugin ============================================================================================ */
       {
-        test: /\.pug$/,
+        test: /\.pug$/u,
         oneOf: [
-          // allow <template lang="pug"> in Vue components
           {
             resourceQuery: /^\?vue/u,
-            loader: 'pug-plugin/node_modules/@webdiscus/pug-loader',
-            options: {
-              method: 'html', // render Pug into pure HTML string
-            },
+            use: [ "pug-plain-loader" ]
           },
-          // allow import of Pug in JS/TS and for "other cases", if a file hasn't the extension `.vue`
           {
-            loader: 'pug-plugin/node_modules/@webdiscus/pug-loader',
-            options: {
-              method: 'compile', // compile Pug into template function
-            },
-          },
-        ],
-      }
+            use: [
+              {
+                loader: "html-loader",
+                options: {
+                  minimize: { caseSensitive: true }
+                }
+              },
+              "pug-html-loader"
+            ]
+          }
+        ]
+      },
+      /* ==== Pug plugin ============================================================================================ */
+      // {
+      //   test: /\.pug$/,
+      //   oneOf: [
+      //     // allow <template lang="pug"> in Vue components
+      //     {
+      //       resourceQuery: /^\?vue/u,
+      //       loader: 'pug-plugin/node_modules/@webdiscus/pug-loader',
+      //       options: {
+      //         method: 'html', // render Pug into pure HTML string
+      //       },
+      //     },
+      //     // allow import of Pug in JS/TS and for "other cases", if a file hasn't the extension `.vue`
+      //     {
+      //       loader: 'pug-plugin/node_modules/@webdiscus/pug-loader',
+      //       options: {
+      //         method: 'compile', // compile Pug into template function
+      //       },
+      //     },
+      //   ],
+      // }
     ]
   },
 
