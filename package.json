@@ -9,10 +9,10 @@
   },
   "devDependencies": {
     "@vue/compiler-sfc": "3.2.31",
+    "@webdiscus/pug-loader": "2.6.4",
     "html-loader": "3.0.1",
     "pug-html-loader": "1.1.5",
     "pug-plain-loader": "1.1.0",
-    "pug-plugin": "2.7.2",
     "rimraf": "3.0.2",
     "ts-loader": "9.2.6",
     "ts-node": "10.4.0",

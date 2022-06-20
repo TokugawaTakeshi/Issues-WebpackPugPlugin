@@ -1,6 +1,6 @@
 <template lang="pug">
-
-div Example single file component
+  //- using `@webdiscus/pug-loader`, you can add indent here
+  div Example single file component
 
 </template>
 
