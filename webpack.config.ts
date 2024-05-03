@@ -51,11 +51,11 @@ const webpackConfig: Webpack.Configuration = {
       // },
       /* ==== Pug plugin ============================================================================================ */
       {
-        test: /\.pug$/,
+        test: /\.vue.pug$/,
         oneOf: [
           // allow <template lang="pug"> in Vue components
           {
-            resourceQuery: /^\?vue/u,
+            resourceQuery: /.vue$/u,
             loader: '@webdiscus/pug-loader', // <-- it is same pug-loader as in PugPlugin.loader
             options: {
               method: 'html', // render Pug into pure HTML string
@@ -63,6 +63,7 @@ const webpackConfig: Webpack.Configuration = {
           },
           // allow import of Pug in JS/TS and for "other cases", if a file hasn't the extension `.vue`
           {
+            resourceQuery: ".vue.ts",
             loader: '@webdiscus/pug-loader', // <-- it is same pug-loader as in PugPlugin.loader
             options: {
               method: 'compile', // compile Pug into template function, use it if you want pass custom data into template on clinet-side rendering.
@@ -73,7 +74,16 @@ const webpackConfig: Webpack.Configuration = {
             },
           },
         ],
-      }
+      },
+
+      {
+        test: /(?!.*\.vue\.pug$).*\.pug$/,
+        loader: '@webdiscus/pug-loader',
+        options: {
+          method: 'render'
+        },
+      },
+
     ]
   },
 

@@ -1,7 +1,7 @@
 <template lang="pug">
-  //- using `@webdiscus/pug-loader`, you can add indent here
-  ExampleSingleFileComponent
-  ExampleMultipleFilesComponent
+//- using `@webdiscus/pug-loader`, you can add indent here
+ExampleSingleFileComponent
+ExampleMultipleFilesComponent
 
 </template>
 
