@@ -10,6 +10,8 @@
   "devDependencies": {
     "@vue/compiler-sfc": "3.4.27",
     "@webdiscus/pug-loader": "2.11.0",
+    "pug-error": "2.0.0",
+    "pug-lexer": "5.0.1",
     "rimraf": "5.0.6",
     "ts-loader": "9.5.1",
     "ts-node": "10.9.2",
