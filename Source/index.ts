@@ -1,8 +1,15 @@
 import { createApp as createVueApplication } from "vue";
 import OverflowSafeSingleLineLabelComponentTestSite from "./ApplicationRootComponent.vue";
 
-// import Test from "./Components/Test.pug";
+// import as template function, because so is configure in webpack using the `mode: 'compile'`option
+import TestFn from "./Components/Test.pug";
 
-// console.log(Test);
+// import as rendered HTML string using the `?render` query (the same result using `mode: 'render'`option)
+// @ts-ignore: Cannot find module ./Components/Test.pug?render or its corresponding type declarations.
+import TestHtml from "./Components/Test.pug?render";
+
+
+console.log('=> Compiled template function: ', TestFn());
+console.log('=> Rendered HTML: ', TestHtml);
 
 createVueApplication(OverflowSafeSingleLineLabelComponentTestSite).mount("#APPLICATION");

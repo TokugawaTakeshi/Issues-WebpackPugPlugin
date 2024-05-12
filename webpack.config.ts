@@ -30,19 +30,22 @@ const webpackConfig: Webpack.Configuration = {
 
       /* ==== Pug plugin ============================================================================================ */
       {
-        test: /\.vue.pug$/,
+        //test: /\.vue.pug$/, // WRONG RegExp: define exact the `/\.pug$/`
+        test: /\.pug$/, // this the universal entry rule for all use cases of Pug (NOT MODIFY!)
         oneOf: [
-          // allow <template lang="pug"> in Vue components
+          // Define only 2 loaders:
+          // 1) Render Pug code from <template lang="pug"> in Vue components
           {
-            resourceQuery: /.vue$/u,
-            loader: '@webdiscus/pug-loader', // <-- it is same pug-loader as in PugPlugin.loader
+            resourceQuery: /^\?vue/u, // <= use the right RegExp (NOT MODIFY!)
+            //resourceQuery: /.vue$/u, // <= you used the WRONG RegExp
+            loader: '@webdiscus/pug-loader',
             options: {
               mode: 'html', // render Pug into pure HTML string
             },
           },
-          // allow import of Pug in JS/TS and for "other cases", if a file hasn't the extension `.vue`
+          // 2) Compile Pug into a template function when a Pug file is imported in JS/TS
           {
-            resourceQuery: ".vue.ts",
+            //resourceQuery: ".vue.ts", // <= WRONG: don't use any condition in the second loader, this is `ELSE` logic (if NOT 1 rule, then 2 rule)
             loader: '@webdiscus/pug-loader', // <-- it is same pug-loader as in PugPlugin.loader
             options: {
               mode: 'compile', // compile Pug into template function, use it if you want pass custom data into template on clinet-side rendering.
@@ -55,13 +58,14 @@ const webpackConfig: Webpack.Configuration = {
         ],
       },
 
-      {
-        test: /(?!.*\.vue\.pug$).*\.pug$/,
-        loader: '@webdiscus/pug-loader',
-        options: {
-          mode: 'render'
-        },
-      },
+      // this is WRONG place, don't define yet one Pug loader anywhere outer the `test: /\.pug$/,` rule
+      // {
+      //   test: /(?!.*\.vue\.pug$).*\.pug$/,
+      //   loader: '@webdiscus/pug-loader',
+      //   options: {
+      //     mode: 'render'
+      //   },
+      // },
 
     ]
   },
