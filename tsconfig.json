@@ -12,5 +12,15 @@
     "experimentalDecorators": true,
 
     "baseUrl": "./"
-  }
+  },
+
+  "include": [
+    "Source/**/*"
+  ],
+
+  "files": [
+    "PugAST_Loader.ts",
+    "Project.d.ts"
+  ]
+
 }

@@ -22,3 +22,5 @@ declare module "pug-plugin" {
   export default PugPlugin;
 
 }
+
+declare module "pug-parser";

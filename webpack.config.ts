@@ -33,6 +33,12 @@ const webpackConfig: Webpack.Configuration = {
         //test: /\.vue.pug$/, // WRONG RegExp: define exact the `/\.pug$/`
         test: /\.pug$/, // this the universal entry rule for all use cases of Pug (NOT MODIFY!)
         oneOf: [
+          {
+            test: /\.custom\.pug$/,
+            use: [
+              Path.resolve("PugAST_Loader.ts"),
+            ]
+          },
           // Define only 2 loaders:
           // 1) Render Pug code from <template lang="pug"> in Vue components
           {

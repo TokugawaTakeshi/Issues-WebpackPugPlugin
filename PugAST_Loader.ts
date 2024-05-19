@@ -1,15 +1,19 @@
 import PugLexer from "pug-lexer";
+import generatePugAST from "pug-parser";
 
 
-const pugAstLoader: (source: string) => PugLexer.Token[] | null = function(source: string): PugLexer.Token[] | null {
+const pugAstLoader: (source: string) => string | null = function(source: string): string | null {
 
   try {
 
     const tokens: PugLexer.Token[] = PugLexer("div test");
+    const AST = generatePugAST(tokens, { filename: "Test.pug", src: source });
 
-    return tokens;
+    return JSON.stringify(AST);
 
-  } catch {
+  } catch (error: unknown) {
+
+    console.error(error);
 
     return null;
 
